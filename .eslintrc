@@ -1,0 +1,36 @@
+{
+  "root": true,
+  "env": { "browser": true, "es2016": true },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "ignorePatterns": ["dist", ".eslintrc.cjs"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "react-refresh",
+    "@typescript-eslint"
+  ],
+  "rules": {
+    "@typescript-eslint/no-explicit-any": "off",
+    "react-refresh/only-export-components": [
+      "warn",
+      { "allowConstantExport": true }
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "useTabs": false,
+        "semi": false,
+        "bracketSpacing": true,
+        "trailingComma": "all",
+        "tabWidth": 2,
+        "printWidth": 120,
+        "endOfLine": "auto"
+      }
+    ]
+  }
+}
