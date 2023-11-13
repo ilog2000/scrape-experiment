@@ -18,5 +18,5 @@ To run it locally, you need to have Node.js and PostgreSQL installed. Then, run 
 
 It is possible to run everything in Docker. To do so,
 1) create docker image by running `docker build -t scrape-experiment .`
-2) make a container by running `docker create -p 5000:80 --env-file ./.env --name scrape-experiment scrape-experiment`
+2) make a container by running `docker create -p 5000:5000 --env-file ./.env --name scrape-experiment scrape-experiment`
 3) run `docker-compose up`. This will start the database, run the scraping script, and start the server. The server will be available at `http://localhost:5000`.
