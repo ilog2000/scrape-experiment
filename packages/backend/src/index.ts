@@ -11,7 +11,11 @@ const PORT: number = process.env.PORT ? parseInt(process.env.PORT as string, 10)
 
 const app: Application = express()
 
-app.use(helmet())
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+  }),
+)
 app.use(cors())
 app.use(express.json())
 app.use('/ads', adsRouter)

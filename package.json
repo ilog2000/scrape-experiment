@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "ingest": "tsc -b && node ./packages/scrape/dist/index.js",
-    "dev": "tsc -b && node ./packages/backend/dist/index.js",
-    "lint": "eslint --ext .ts ./packages",
-    "lint:fix": "eslint --fix --ext .ts ./packages",
-    "build": "tsc -b",
+    "ingest": "npm run build && node ./packages/scrape/dist/index.js",
+    "dev": "npm run build && node ./packages/backend/dist/index.js",
+    "build": "npm run build -ws",
+    "lint": "npm run lint -ws",
+    "clean": "npx -y rimraf node_modules **/node_modules/ package-lock.json && npm i",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -27,7 +27,9 @@
     "eslint-plugin-prettier": "^5.0.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.4",
+    "npm-run-all": "^4.1.5",
     "prettier": "^3.0.3",
+    "stylelint": "^15.11.0",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
   },
