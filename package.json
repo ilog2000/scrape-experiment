@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node ./packages/backend/dist/index.js",
     "ingest": "npm run build && node ./packages/scrape/dist/index.js",
     "dev": "npm run build && node ./packages/backend/dist/index.js",
     "build": "npm run build -ws",
