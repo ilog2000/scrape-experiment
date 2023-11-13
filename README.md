@@ -25,4 +25,4 @@ It is possible to run everything in Docker conatiners. To do so,
 
 Alternatively, run `docker-compose up`. This will start the database, run the scraping script, and start the server. The server will be available at `http://localhost:5000`.
 
-To igest the data, run `docker exec -it scrape-experiment npm run ingest`.
+To ingest the data, run locally in project directory `npm run ingest`.
