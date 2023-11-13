@@ -9,7 +9,9 @@ services:
       POSTGRES_USER: postgres
   app:
     image: node:alpine
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     working_dir: /usr/src/app
     volumes:
       - .:/usr/src/app
@@ -17,7 +19,6 @@ services:
     tty: true
     ports:
       - "5000:5000"
-    command: >
-      sh -c "chmod +x ./node_modules/.bin/* && npm run build && npm start"
+    command: npm start
     depends_on:
       - postgres
