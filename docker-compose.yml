@@ -1,25 +1,23 @@
 version: '3'
 services:
   postgres:
-    image: postgres
+    image: postgres:alpine
     ports:
       - "5432:5432"
     environment:
       POSTGRES_PASSWORD: postgres
-    volumes:
-      - ./postgresql/data:/var/lib/postgresql/data
-
+      POSTGRES_USER: postgres
   app:
-    build:
-      context: node
-    container_name: scrape-experiment
+    image: node:alpine
+    build: .
     working_dir: /usr/src/app
     volumes:
-      - ./node:/usr/src/app
+      - .:/usr/src/app
       - /usr/src/app/node_modules
     tty: true
     ports:
       - "5000:5000"
-    command: npm start
+    command: >
+      sh -c "chmod +x ./node_modules/.bin/* && npm run build && npm start"
     depends_on:
       - postgres
