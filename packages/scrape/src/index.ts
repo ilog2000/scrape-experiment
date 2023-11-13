@@ -15,8 +15,7 @@ const searchURL = process.env.SEARCH_URL ?? 'https://www.sreality.cz/hledani/pro
     }
 
     // 20 items per page, 25 pages = 500 items
-    // TODO: use numberOfPages = 25
-    const allAds = await collectAdInfos(searchURL, 2)
+    const allAds = await collectAdInfos(searchURL, 25)
 
     // check for duplicates
     console.log(allAds.length)
