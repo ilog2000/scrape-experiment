@@ -1,26 +1,4 @@
-version: '3'
 services:
-  app:
-    image: node:alpine
-    restart: always
-    build:
-      context: .
-      dockerfile: Dockerfile
-    working_dir: /usr/src/app
-    volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
-    tty: true
-    ports:
-      - "5000:5000"
-    command: npm start
-    depends_on:
-      db:
-        condition: service_healthy
-    links:
-      - db
-    networks:
-      - localnet
   db:
     image: postgres:alpine
     restart: always
@@ -34,9 +12,31 @@ services:
       - ./sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
+      interval: 30s
+      timeout: 10s
+      retries: 10
+    networks:
+      - localnet
+  app:
+    image: node:alpine
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    user: node
+    tty: true
+    ports:
+      - "5000:5000"
+    working_dir: /usr/src/app
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    entrypoint: npm start
+    depends_on:
+      db:
+        condition: service_healthy
+    links:
+      - db
     networks:
       - localnet
 
