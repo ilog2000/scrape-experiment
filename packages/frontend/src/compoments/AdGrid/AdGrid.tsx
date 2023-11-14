@@ -4,7 +4,7 @@ import { DbRecord } from '@scrape-experiment/shared/models'
 
 export function AdGrid({ pageNr = 0 }: { pageNr?: number }) {
   const { data, isLoading, isError, error } = useQuery(`ads${pageNr}`, async () => {
-    const url = `http://localhost:5000/ads${pageNr ? '/' + pageNr : ''}`
+    const url = `/ads${pageNr ? '/' + pageNr : ''}`
     console.log(url)
     const response = await fetch(url)
     const data = await response.json()

@@ -12,7 +12,7 @@ services:
       - ./sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 30s
+      interval: 10s
       timeout: 10s
       retries: 10
   app:
@@ -30,6 +30,11 @@ services:
       - .:/usr/src/app
       - /usr/src/app/node_modules
     command: ["node", "./packages/backend/dist/index.js"]
+    environment:
+      - DB_PASSWORD=postgres
+      - DB_USER=postgres
+      - DB_NAME=scrapedb
+      - DB_HOST=db
     depends_on:
       db:
         condition: service_healthy

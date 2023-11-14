@@ -23,11 +23,10 @@ To run it locally, you need to have Node.js and PostgreSQL installed. Then,
 Now open the browser at `http://localhost:5000` and you should see the list of apartments.
 
 It is possible to run everything in Docker conatiners. To do so,
-1) make sure the `.env` file is created as described above,
-2) run `docker run --name postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -e POSTGRES_DB=scrapedb -p 5432:5432 -d postgres:alpine` to create and start a postgres container,
-3) create docker image by running `docker build -t scrape-experiment .`,
-4) make a container by running `docker create -p 5000:5000 --env-file ./.env --name scrape-experiment scrape-experiment`,
-5) execute `docker start scrape-experiment`.
+1) run `docker run --name postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -e POSTGRES_DB=scrapedb -p 5432:5432 -d postgres:alpine` to create and start a postgres container,
+2) create docker image by running `docker build -t scrape-experiment .`,
+3) make a container by running `docker create -p 5000:5000 --env-file ./.env --name scrape-experiment scrape-experiment`,
+4) execute `docker start scrape-experiment`.
 
 Alternatively, run `docker-compose up`. This will start the database and start the server. The server will be available at `http://localhost:5000`.
 
