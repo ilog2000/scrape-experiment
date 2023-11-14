@@ -8,12 +8,6 @@ const searchURL = process.env.SEARCH_URL ?? 'https://www.sreality.cz/hledani/pro
 
 ;(async () => {
   try {
-    const exists = await db.databaseExists()
-    if (!exists) {
-      await db.createDatabase()
-      await db.createTable()
-    }
-
     // 20 items per page, 25 pages = 500 items
     const allAds = await collectAdInfos(searchURL, 25)
 
