@@ -1,14 +1,8 @@
 version: '3'
 services:
-  postgres:
-    image: postgres:alpine
-    ports:
-      - "5432:5432"
-    environment:
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_USER: postgres
   app:
     image: node:alpine
+    restart: always
     build:
       context: .
       dockerfile: Dockerfile
@@ -21,4 +15,31 @@ services:
       - "5000:5000"
     command: npm start
     depends_on:
-      - postgres
+      db:
+        condition: service_healthy
+    links:
+      - db
+    networks:
+      - localnet
+  db:
+    image: postgres:alpine
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: scrapedb
+    volumes:
+      - ./sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - localnet
+
+networks:
+  localnet:
+    driver: bridge

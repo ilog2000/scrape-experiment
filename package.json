@@ -8,8 +8,6 @@
     "dev": "npm run build && node ./packages/backend/dist/index.js",
     "init": "node ./packages/scrape/dist/init.js",
     "ingest": "node ./packages/scrape/dist/index.js",
-    "init:dev": "npm run build && node ./packages/scrape/dist/init.js",
-    "ingest:dev": "npm run build && node ./packages/scrape/dist/index.js",
     "build": "npm run build -ws",
     "lint": "npm run lint -ws",
     "clean": "npx -y rimraf node_modules **/node_modules/ package-lock.json && npm i",
