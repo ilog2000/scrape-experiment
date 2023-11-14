@@ -2,18 +2,6 @@
 
 This is a simple experiment to scrape the [sreality.cz page](https://www.sreality.cz/hledani/prodej/byty) for the list of apartments being sold, and to create a simple Express back end and React front end.
 
-Before running the code, you need to create a `.env` file in the root directory with the following content:
-```
-SEARCH_URL=https://www.sreality.cz/hledani/prodej/byty
-DB_NAME=scrapedb
-DB_USER=postgres
-DB_PASSWORD=postgres
-DB_HOST=localhost
-DB_PORT=5432
-PORT=5000
-```
-Update the values as needed.
-
 To run it locally, you need to have Node.js and PostgreSQL installed. Then,
 1) run `npm install`,
 2) run `npm run build` to build all apps,
