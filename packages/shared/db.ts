@@ -75,7 +75,6 @@ export async function setDataArray(records: DbRecord[]): Promise<void> {
     const head = 'INSERT INTO ads (id, data) VALUES '
     const tail = ' ON CONFLICT (id) DO UPDATE SET data = EXCLUDED.data;'
     const values = records.map((r) => `('${r.id}', '${JSON.stringify(r.data)}')`).join(',')
-    console.log(head + values + tail)
     await pool.query(head + values + tail)
   } catch (err) {
     console.error(err)

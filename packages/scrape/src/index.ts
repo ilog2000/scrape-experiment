@@ -37,6 +37,7 @@ const searchURL = process.env.SEARCH_URL ?? 'https://www.sreality.cz/hledani/pro
         return record
       })
       await db.setDataArray(records)
+      console.log(`Inserted ${records.length} records`)
     }
   } finally {
     await db.pool.end()

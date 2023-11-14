@@ -6,4 +6,4 @@ RUN npm install
 RUN chmod +x ./node_modules/.bin/*
 RUN npm run build
 EXPOSE 5000
-CMD ["npm", "start"]
+CMD ["node", "./packages/backend/dist/index.js"]

@@ -15,8 +15,6 @@ services:
       interval: 30s
       timeout: 10s
       retries: 10
-    networks:
-      - localnet
   app:
     image: node:alpine
     restart: always
@@ -31,15 +29,9 @@ services:
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
-    entrypoint: npm start
+    command: ["node", "./packages/backend/dist/index.js"]
     depends_on:
       db:
         condition: service_healthy
     links:
       - db
-    networks:
-      - localnet
-
-networks:
-  localnet:
-    driver: bridge
